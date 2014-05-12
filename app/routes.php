@@ -16,3 +16,5 @@ Route::get('/', 'HomeController@showWelcome');
 Route::resource('amps', 'AmpController');
 
 Route::resource('volts', 'VoltController');
+
+Route::resource('temperatures', 'TemperatureController');

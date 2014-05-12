@@ -26,6 +26,7 @@
         <li class="{{Form::activeNavTab('home')}}"><a href="{{action('HomeController@showWelcome')}}#home" data-toggle="tab">Home</a></li>
         <li class="{{Form::activeNavTab('amps')}}"><a href="{{route('amps.index')}}#amps" data-toggle="tab">Amps</a></li>
         <li class="{{Form::activeNavTab('volts')}}"><a href="{{route('volts.index')}}#volts" data-toggle="tab">Volts</a></li>
+        <li class="{{Form::activeNavTab('temperatures')}}"><a href="{{route('temperatures.index')}}#temperatures" data-toggle="tab">Temperatures</a></li>
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Setup<span class="caret"></span></a>
             <ul class="dropdown-menu">
@@ -36,7 +37,7 @@
         </li>
     </ul>
     <div class="tab-content">
-        <div class="tab-pane {{ Form::activeNavTab('home') }}"" id="home">
+        <div class="tab-pane {{ Form::activeNavTab('home') }}" id="home">
             @yield('home')
         </div>
         <div class="tab-pane {{ Form::activeNavTab('amps') }}" id="amps">
@@ -44,6 +45,9 @@
         </div>
         <div class="tab-pane {{ Form::activeNavTab('volts') }}" id="volts">
             @yield('volts')
+        </div>
+        <div class="tab-pane {{ Form::activeNavTab('temperatures') }}" id="temperatures">
+            @yield('temperatures')
         </div>
         <div class="tab-pane" id="setup">
             @yield('setup')

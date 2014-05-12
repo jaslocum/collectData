@@ -9,6 +9,7 @@
 //nav-tab tags and associated requests
 global $request;
 $request = array(
+    "temperatures" => "temperatures*",
     "volts" => "volts*",
     "amps" => "amps*",
     "home" => "/",
@@ -17,7 +18,6 @@ $request = array(
 Form::macro('activeNavTab',function($tag)
 {
     global $request;
-    $x = Request::is( $request[$tag] ) ? 'active' : '';
     return Request::is( $request[$tag] ) ? 'active' : '';
 });
 

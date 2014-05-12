@@ -15,7 +15,6 @@ class Volt extends Eloquent {
     protected $fillable = array(
         'record_id',
         'volt',
-        'time',
     );
 
     public $rules = array(

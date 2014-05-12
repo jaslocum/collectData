@@ -3,23 +3,23 @@
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class Amp extends Eloquent {
+class Temperature extends Eloquent {
 
 	/**
 	 * The database table used by the model.
 	 *
 	 * @var string
 	 */
-    protected $table = "amp";
+    protected $table = "temperature";
 
     protected $fillable = array(
         'record_id',
-        'amp',
+        'temperature',
     );
 
     public $rules = array(
         'record_id' => 'required',
-        'amp' => 'required',
+        'temperature' => 'required',
     );
 
     public $errors;
