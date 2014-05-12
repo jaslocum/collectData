@@ -61,7 +61,7 @@ class Record extends Eloquent {
 
     public function record_type()
     {
-        return $this->belongsTo('Record_type');
+        return $this->belongsTo('RecordType');
     }
 
     public function unit()

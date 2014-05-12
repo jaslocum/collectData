@@ -21,7 +21,7 @@ class TemperatureController extends BaseController {
         $d2 = (isset($post['d2'])? $post['d2'] : $this->date->format('m/d/Y h:i A'));
         $d1MySQL = date("Y-m-d H:i:s", strtotime($d1));
         $d2MySQL = date("Y-m-d H:i:s", strtotime($d2));
-        $records = Record::orderBy('name', 'ASC')->lists('name','id');
+        $records = recordList('temperature');
         $r1 = (isset($post['r1'])? $post['r1'] : key($records));
         $temperatures =
             $this->temperature->
