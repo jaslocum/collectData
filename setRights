@@ -1,0 +1,4 @@
+#!/bin/bash
+chown -R jack:www-data /sft/projects/Laravel/collectData
+chmod -R 754 /sft/projects/Laravel/collectData
+chmod -R 774 /sft/projects/Laravel/collectData/app/storage

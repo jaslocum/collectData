@@ -1,6 +1,6 @@
 <?php
 
-class RecordType extends Eloquent {
+class Unit extends Eloquent {
 
     protected $fillable = array(
         'name',

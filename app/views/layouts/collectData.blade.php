@@ -13,7 +13,6 @@
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     {{HTML::script('components/jquery/dist/jquery.js',array('type'=>'text/javascript'))}}
-    {{HTML::script('components/jquery-cookie/jquery.cookie.js',array('type'=>'text/javascript'))}}
     {{HTML::script('components/bootstrap/dist/js/bootstrap.js',array('type'=>'text/javascript'))}}
     {{HTML::script('components/moment/moment.js',array('type'=>'text/javascript'))}}
     {{HTML::script('components/eonasdan-bootstrap-datetimepicker/src/js/bootstrap-datetimepicker.js',array('type'=>'text/javascript'))}}
@@ -27,12 +26,16 @@
         <li class="{{Form::activeNavTab('amps')}}"><a href="{{route('amps.index')}}#amps" data-toggle="tab">Amps</a></li>
         <li class="{{Form::activeNavTab('volts')}}"><a href="{{route('volts.index')}}#volts" data-toggle="tab">Volts</a></li>
         <li class="{{Form::activeNavTab('temperatures')}}"><a href="{{route('temperatures.index')}}#temperatures" data-toggle="tab">Temperatures</a></li>
+        <!--
+        <li class="{{Form::activeNavTab('loggers')}}"><a href="{{route('loggers.index')}}#loggers" data-toggle="tab">Logger</a></li>
+        -->
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Setup<span class="caret"></span></a>
             <ul class="dropdown-menu">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="{{route('records.index')}}#records">Record</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="{{route('recordTypes.index')}}#recordTypes">Record Type</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="{{route('loggers.index')}}#loggers">Logger</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="{{route('units.index')}}#units">Unit</a></li>
             </ul>
         </li>
     </ul>
@@ -49,8 +52,17 @@
         <div class="tab-pane {{ Form::activeNavTab('temperatures') }}" id="temperatures">
             @yield('temperatures')
         </div>
-        <div class="tab-pane" id="setup">
-            @yield('setup')
+        <div class="tab-pane {{ Form::activeNavTab('records') }}" id="records">
+            @yield('records')
+        </div>
+        <div class="tab-pane {{ Form::activeNavTab('recordTypes') }}" id="recordTypes">
+            @yield('recordTypes')
+        </div>
+        <div class="tab-pane {{ Form::activeNavTab('loggers') }}" id="loggers">
+            @yield('loggers')
+        </div>
+        <div class="tab-pane {{ Form::activeNavTab('units') }}" id="units">
+            @yield('units')
         </div>
     </div>
 

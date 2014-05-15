@@ -9,6 +9,10 @@
 //nav-tab tags and associated requests
 global $request;
 $request = array(
+    "units" => "units*",
+    "loggers" => "loggers*",
+    "recordTypes" => "recordTypes*",
+    "records" => "records*",
     "temperatures" => "temperatures*",
     "volts" => "volts*",
     "amps" => "amps*",
