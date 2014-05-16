@@ -77,7 +77,7 @@ class LoggerController extends \BaseController {
 	 */
 	public function update($id)
 	{
-        $post = Request::all();
+
         $logger = $this->logger->whereId($id)->first();
 
         if (! $logger->fill(Input::all())->isValid())
@@ -87,7 +87,7 @@ class LoggerController extends \BaseController {
 
         $logger->save();
 
-        return Redirect::to($post['returnURL']);
+        return Redirect::to(Input::get('returnURL'));
 	}
 
 

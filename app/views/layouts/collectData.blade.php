@@ -10,10 +10,11 @@
     {{HTML::style('components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css')}}
     {{HTML::style('components/bootstrap/dist/css/bootstrap.css')}}
     {{HTML::style('components/bootstrap/dist/css/bootstrap-theme.css')}}
-    {{HTML::style('components/sftcss/sft.css')}}
+    {{HTML::style('components/sft/css/sft.css')}}
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     {{HTML::script('components/jquery/dist/jquery.js',array('type'=>'text/javascript'))}}
+    {{HTML::script('components/sft/js/sft.js',array('type'=>'text/javascript'))}}
     {{HTML::script('components/bootstrap/dist/js/bootstrap.js',array('type'=>'text/javascript'))}}
     {{HTML::script('components/moment/moment.js',array('type'=>'text/javascript'))}}
     {{HTML::script('components/eonasdan-bootstrap-datetimepicker/src/js/bootstrap-datetimepicker.js',array('type'=>'text/javascript'))}}
@@ -26,11 +27,11 @@
         <li class="{{Form::activeNavTab('home')}}"><a href="{{action('HomeController@showWelcome')}}#home" data-toggle="tab">Home</a></li>
         <li class="{{Form::activeNavTab('amps')}}"><a href="{{route('amps.index')}}#amps" data-toggle="tab">Amps</a></li>
         <li class="{{Form::activeNavTab('volts')}}"><a href="{{route('volts.index')}}#volts" data-toggle="tab">Volts</a></li>
-        <li class="{{Form::activeNavTab('temperatures')}}"><a href="{{route('temperatures.index')}}#temperatures" data-toggle="tab">Temperatures</a></li>
+        <li class="{{Form::activeNavTab('temperatures')}}"><a href="{{route('temperatures.index')}}#temperatures" data-toggle="tab">Temps</a></li>
         <!--
         <li class="{{Form::activeNavTab('loggers')}}"><a href="{{route('loggers.index')}}#loggers" data-toggle="tab">Logger</a></li>
         -->
-        <li class="dropdown">
+        <li class="dropdown {{Form::activeSetupTab()}}">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Setup<span class="caret"></span></a>
             <ul class="dropdown-menu">
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="{{route('records.index')}}#records">Record</a></li>

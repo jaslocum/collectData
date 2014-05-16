@@ -20,12 +20,31 @@ $request = array(
     "home" => "/",
 );
 
+global $setup;
+$setup = array(
+    "#units" => true,
+    "#loggers" => true,
+    "#loggerTypes" => true,
+    "#recordTypes" => true,
+    "#records" => true,
+    "#temperatures" => false,
+    "#volts" => false,
+    "#amps" => false,
+    "#home" => false,
+);
+
+
 Form::macro('activeNavTab',function($tag)
 {
     global $request;
     return Request::is( $request[$tag] ) ? 'active' : '';
 });
 
+Form::macro('activeSetupTab',function()
+{
+    global $setup;
+    return $setup[Form::orgActiveNavTab()] ? 'active' : '';
+});
 
 Form::macro('orgActiveNavTab',function()
 {
@@ -37,6 +56,7 @@ Form::macro('orgActiveNavTab',function()
     }
     return "";
 });
+
 
 Form::macro('onClickDatePicker',function($tag)
 {

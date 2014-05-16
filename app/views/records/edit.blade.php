@@ -14,7 +14,7 @@
             </div>
             <div class='form-group'>
                 {{ Form::label('active', 'Active?') }}
-                {{ Form::checkbox('active', $record->active, array('class'=>'form-control')) }}
+                {{ Form::checkbox('active', $record->active, $record->active, array('onclick'=>"cbSet(this)")) }}
             </div>
             <div class='form-group'>
                 {{ Form::label('name', 'Name') }}

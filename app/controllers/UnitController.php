@@ -76,7 +76,7 @@ class UnitController extends \BaseController {
 	 */
 	public function update($id)
 	{        
-        $post = Request::all();
+
         $unit = $this->unit->whereId($id)->first();
 
         if (! $unit->fill(Input::all())->isValid())
@@ -86,7 +86,7 @@ class UnitController extends \BaseController {
 
         $unit->save();
 
-        return Redirect::to($post['returnURL']);
+        return Redirect::to(Input::get('returnURL'));
 	}
 
 

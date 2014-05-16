@@ -5,6 +5,7 @@
 
 input[type=checkbox]
 {
+
     /* Double-sized Checkboxes */
     -ms-transform: scale(1.5); /* IE */
     -moz-transform: scale(1.5); /* FF */
@@ -12,4 +13,5 @@ input[type=checkbox]
     -o-transform: scale(1.5); /* Opera */
     margin: 0em 1em 0px 1em;
     !important;
+
 }

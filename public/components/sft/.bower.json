@@ -1,0 +1,13 @@
+{
+  "name": "sft",
+  "homepage": "https://github.com/jaslocum/sft",
+  "_release": "689d2afcc0",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "689d2afcc043e7cbfde3901f6266288baa91c974"
+  },
+  "_source": "git://github.com/jaslocum/sft.git",
+  "_target": "*",
+  "_originalSource": "jaslocum/sft"
+}

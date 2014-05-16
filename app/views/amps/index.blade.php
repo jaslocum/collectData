@@ -3,21 +3,14 @@
     <h4>
         <div class="container-fluid">
             <div class="row col-md-12">
-                <div class="col-md-2">
+                <div class="col-md-1">
                     <span class="glyphicon glyphicon-th-list"></span>
                     {{Form::label('Amps')}}
                 </div>
                 <div class="col-md-3 form-group" id="d1div">
-                    {{Form::label('sdate','Start Date',array('class' => 'control-label'))}}
-                        <div class="input-group date col-md-12" id="d1">
-                            {{Form::text('sdate',$d1,array('class' => 'form-control', 'id'=>'d1val'))}}
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                        </div>
-                </div>
-                <div class="col-md-3 form-group" id="d2div">
-                    {{Form::label('edate','End Date',array('class' => 'control-label'))}}
-                    <div class="input-group date col-md-12" id="d2">
-                        {{Form::text('edate',$d2,array('class' => 'form-control', 'id'=>'d2val'))}}
+                    {{Form::label('edate','On or Before',array('class' => 'control-label'))}}
+                    <div class="input-group date col-md-12" id="d1">
+                        {{Form::text('edate',$d1,array('class' => 'form-control', 'id'=>'d1val'))}}
                         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                     </div>
                 </div>
@@ -84,23 +77,6 @@
                     "{{route('amps.index')}}",
                     {
                         d1 : $("#d1val").val(),
-                        d2 : $("#d2val").val(),
-                        r1 : $('#r1').val()
-                    },
-                    function(data){
-                        $('#t1div').html($(data).find('#t1'));
-                        history.replaceState(data,'',this.url);
-                    }
-                );
-            });
-        $('#d2').datetimepicker()
-            .on('dp.change', function(e){
-                // `e` here contains the extra attributes
-                $.get(
-                    "{{route('amps.index')}}",
-                    {
-                        d1 : $("#d1val").val(),
-                        d2 : $("#d2val").val(),
                         r1 : $('#r1').val()
                     },
                     function(data, status, xhr){
@@ -114,7 +90,6 @@
                 "{{route('amps.index')}}",
                 {
                     d1 : $("#d1val").val(),
-                    d2 : $("#d2val").val(),
                     r1 : $('#r1').val()
                 },
                 function(data){

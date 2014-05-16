@@ -76,7 +76,7 @@ class RecordTypeController extends \BaseController {
 	 */
 	public function update($id)
 	{
-        $post = Request::all();
+
         $recordType = $this->recordType->whereId($id)->first();
 
         if (! $recordType->fill(Input::all())->isValid())
@@ -86,7 +86,7 @@ class RecordTypeController extends \BaseController {
 
         $recordType->save();
 
-        return Redirect::to($post['returnURL']);
+        return Redirect::to(Input::get('returnURL'));
 	}
 
 

@@ -15,25 +15,20 @@ class AmpController extends BaseController {
 
 	public function index()
     {
-
-        $post = Request::all();
-        $d1 = (isset($post['d1'])? $post['d1'] : $this->hourAgo->format('m/d/Y h:i A'));
-        $d2 = (isset($post['d2'])? $post['d2'] : $this->date->format('m/d/Y h:i A'));
+        $d1 = Input::has('d1') ? Input::get('d1') : $this->date->format('m/d/Y h:i A');
         $d1MySQL = date("Y-m-d H:i:s", strtotime($d1));
-        $d2MySQL = date("Y-m-d H:i:s", strtotime($d2));
         $records = RecordType::where('name','amp')->first()->records->lists('name','id');
-        $r1 = (isset($post['r1'])? $post['r1'] : key($records));
+        $r1 = Input::has('r1') ? Input::get('r1') : key($records);
         $amps =
             $this->amp->
-            where('created_at','>=',$d1MySQL)->
-            where('created_at','<=',$d2MySQL)->
-            where('record_id',$r1)->
-            orderBy('id','DESC')->
-            take(60)->
-            with('record')->
-            get();
+                where('record_id',$r1)->
+                where('created_at','<=',$d1MySQL)->
+                orderBy('id','DESC')->
+                take(60)->
+                with('record')->
+                get();
 
-		return View::make('amps.index', array('amps'=>$amps, 'd1'=>$d1, 'd2'=>$d2, 'records'=>$records, 'r1'=>$r1));
+        return View::make('amps.index', array('amps'=>$amps, 'd1'=>$d1, 'records'=>$records, 'r1'=>$r1));
 	}
 
     public function edit($id)
@@ -45,7 +40,7 @@ class AmpController extends BaseController {
 
     public function update($id)
     {
-        $post = Request::all();
+
         $amp = $this->amp->whereId($id)->first();
 
         if (! $amp->fill(Input::all())->isValid())
@@ -55,6 +50,6 @@ class AmpController extends BaseController {
 
         $amp->save();
 
-        return Redirect::to($post['returnURL']);
+        return Redirect::to(Input::get('returnURL'));
     }
 }

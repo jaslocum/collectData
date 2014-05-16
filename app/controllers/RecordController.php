@@ -84,8 +84,8 @@ class RecordController extends \BaseController {
 	 */
 	public function update($id)
 	{
-        $post = Request::all();
         $record = $this->record->whereId($id)->first();
+        Input::has('active') ? $record->active = '1' : $record->active = '0';
 
         if (! $record->fill(Input::all())->isValid())
         {
@@ -94,7 +94,7 @@ class RecordController extends \BaseController {
 
         $record->save();
 
-        return Redirect::to($post['returnURL']);
+        return Redirect::to(Input::get('returnURL'));
 	}
 
 
