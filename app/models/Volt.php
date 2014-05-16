@@ -13,7 +13,6 @@ class Volt extends Eloquent {
     protected $table = "volt";
 
     protected $fillable = array(
-        'record_id',
         'volt',
     );
 

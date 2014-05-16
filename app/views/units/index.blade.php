@@ -30,7 +30,6 @@
                     <td>
                         {{$unit->description}}
                     </td>
-                    <td>
                 </tr>
             @endforeach
         </tbody>

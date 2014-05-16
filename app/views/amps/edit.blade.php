@@ -5,16 +5,16 @@
     {{ HTML::ul($errors->all()) }}
     {{Form::open(array('route'=>array('amps.update',$amp->id), 'method'=>'PUT'))}}
         <div class="col-sm-12">
-            <h2><span class="glyphicon glyphicon-edit" style="margin: 5px"></span>Edit Amp</h2>
+            <h2><span class="glyphicon glyphicon-edit"></span>Edit Amp</h2>
         </div>
         <div class="col-sm-4">
             <div class='form-group'>
                 {{ Form::label('id', 'Id') }}
-                {{ Form::text('id', $amp->id, array('class'=>'form-control', 'readonly')) }}
+                {{ Form::text('id', $amp->id, array('class'=>'form-control', 'readonly'=>'readonly')) }}
             </div>
             <div class='form-group'>
                 {{Form::label('record_id', 'Record') }}
-                {{Form::select('record_id',$records,$amp->record_id,array('class'=>'form-control', 'readonly'))}}
+                {{Form::text('record_id',$amp->record->name,array('class'=>'form-control', 'readonly'=>'readonly'))}}
             </div>
             <div class='form-group'>
                 {{ Form::label('amp', 'Amp') }}
@@ -22,11 +22,11 @@
             </div>
             <div class='form-group'>
                 {{ Form::label('created_at', 'Created') }}
-                {{ Form::text('created_at', $amp->created_at, array('class'=>'form-control', 'readonly')) }}
+                {{ Form::text('created_at', $amp->created_at, array('class'=>'form-control', 'readonly'=>'readonly')) }}
             </div>
             <div class='form-group'>
                 {{ Form::label('updated_at', 'Updated') }}
-                {{ Form::text('updated_at', $amp->updated_at, array('class'=>'form-control', 'readonly')) }}
+                {{ Form::text('updated_at', $amp->updated_at, array('class'=>'form-control', 'readonly'=>'readonly')) }}
             </div>
             <div class = "col-sm-12">
                 <span class="col-sm-1"></span>

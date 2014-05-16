@@ -38,7 +38,7 @@ class AmpController extends BaseController {
 
     public function edit($id)
     {
-        $amp = $this->amp->with('record')->whereId($id)->first();
+        $amp = $this->amp->whereId($id)->with('record')->first();
         $records = Record::orderBy('name', 'ASC')->lists('name','id');
         return View::make('amps.edit', array('amp'=>$amp, 'records'=>$records));
     }

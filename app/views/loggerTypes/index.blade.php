@@ -1,11 +1,11 @@
 @extends('layouts/collectData')
-@section('loggers')
+@section('loggerTypes')
 <h4>
     <div class="container-fluid">
         <div class="row col-md-12">
             <div class="col-md-2">
                 <span class="glyphicon glyphicon-th-list"></span>
-                {{Form::label('Loggers')}}
+                {{Form::label('LoggerTypes')}}
             </div>
         </div>
     </div>
@@ -18,29 +18,17 @@
                 <th>Id</th>
                 <th>Name</th>
                 <th>Description</th>
-                <th>Logger Type</th>
-                <th>IP Address</th>
-                <th>Port</th>
             </tr>
-            @foreach ($loggers as $logger)
+            @foreach ($loggerTypes as $loggerType)
                 <tr>
                     <td>
-                        {{link_to("/loggers/$logger->id/edit",$logger->id)}}
+                        {{link_to("/loggerTypes/$loggerType->id/edit",$loggerType->id)}}
                     </td>
                     <td>
-                        {{$logger->name}}
+                        {{$loggerType->name}}
                     </td>
                     <td>
-                        {{$logger->description}}
-                    </td>
-                    <td>
-                        {{$logger->loggerType->name}}
-                    </td>
-                    <td>
-                        {{$logger->ip_address}}
-                    </td>
-                    <td>
-                        {{$logger->port}}
+                        {{$loggerType->description}}
                     </td>
                 </tr>
             @endforeach

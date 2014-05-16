@@ -10,6 +10,7 @@
         </div>
     </div>
 </h4>
+{{Form::open()}}
 <div id="t1div" class="col-md-12">
     <span class="col-md-1"></span>
     <table id="t1" class="col-md-10 table table-striped" style="border-width: 1px">
@@ -33,7 +34,7 @@
                         {{link_to("/records/$record->id/edit",$record->id)}}
                     </td>
                     <td>
-                        {{$record->active}}
+                        {{Form::checkbox('active',$record->active,$record->active,array('readonly'=>'readonly', 'disabled'=>'disabled'))}}
                     </td>
                     <td>
                         {{$record->name}}
@@ -51,7 +52,7 @@
                         {{$record->logger->name}}
                     </td>
                     <td>
-                        {{$record->record_type->name}}
+                        {{$record->recordType->name}}
                     </td>
                     <td>
                         {{$record->unit->name}}
@@ -67,4 +68,5 @@
         </tbody>
     </table>
 </div>
+{{Form::close()}}
 @stop

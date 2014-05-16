@@ -16,7 +16,7 @@ class RecordController extends \BaseController {
     public function index()
 	{
         //list records
-        $records = $this->record->orderBy('name')->with('logger')->with('record_type')->with('unit')->get();
+        $records = $this->record->orderBy('name')->with('logger')->with('recordType')->with('unit')->get();
         return View::make('records.index',array('records'=>$records));
 	}
 
@@ -63,7 +63,16 @@ class RecordController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+        $record = $this->record->orderBy('name')->with('logger')->with('recordType')->with('unit')->whereId($id)->first();
+        $recordTypes = RecordType::orderBy('name')->get()->lists('name','id');
+        $loggers = Logger::orderBy('name')->get()->lists('name','id');
+        $units = Unit::orderBy('name')->get()->lists('name','id');
+        return View::make('records.edit',
+            array('record'=>$record,
+                  'recordTypes'=>$recordTypes,
+                  'loggers'=>$loggers,
+                  'units'=>$units
+            ));
 	}
 
 
@@ -75,7 +84,17 @@ class RecordController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+        $post = Request::all();
+        $record = $this->record->whereId($id)->first();
+
+        if (! $record->fill(Input::all())->isValid())
+        {
+            return Redirect::back()->withInput()->withErrors($record->errors);
+        }
+
+        $record->save();
+
+        return Redirect::to($post['returnURL']);
 	}
 
 

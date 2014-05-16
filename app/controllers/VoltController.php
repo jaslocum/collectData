@@ -38,7 +38,7 @@ class VoltController extends BaseController {
 
     public function edit($id)
     {
-        $volt = $this->volt->with('record')->whereId($id)->first();
+        $volt = $this->volt->whereId($id)->with('record')->first();
         $records = Record::orderBy('name', 'ASC')->lists('name','id');
         return View::make('volts.edit', array('volt'=>$volt, 'records'=>$records));
     }

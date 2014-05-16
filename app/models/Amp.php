@@ -13,7 +13,6 @@ class Amp extends Eloquent {
     protected $table = "amp";
 
     protected $fillable = array(
-        'record_id',
         'amp',
     );
 

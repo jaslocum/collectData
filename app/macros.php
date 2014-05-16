@@ -11,6 +11,7 @@ global $request;
 $request = array(
     "units" => "units*",
     "loggers" => "loggers*",
+    "loggerTypes" => "loggerTypes*",
     "recordTypes" => "recordTypes*",
     "records" => "records*",
     "temperatures" => "temperatures*",

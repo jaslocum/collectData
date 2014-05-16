@@ -38,7 +38,7 @@ class TemperatureController extends BaseController {
 
     public function edit($id)
     {
-        $temperature = $this->temperature->with('record')->whereId($id)->first();
+        $temperature = $this->temperature->whereId($id)->with('record')->first();
         $records = Record::orderBy('name', 'ASC')->lists('name','id');
         return View::make('temperatures.edit', array('temperature'=>$temperature, 'records'=>$records));
     }

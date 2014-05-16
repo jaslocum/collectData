@@ -63,7 +63,8 @@ class RecordTypeController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+        $recordType = $this->recordType->whereId($id)->first();
+        return View::make('recordTypes.edit', array('recordType'=>$recordType));
 	}
 
 
@@ -75,7 +76,17 @@ class RecordTypeController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+        $post = Request::all();
+        $recordType = $this->recordType->whereId($id)->first();
+
+        if (! $recordType->fill(Input::all())->isValid())
+        {
+            return Redirect::back()->withInput()->withErrors($recordType->errors);
+        }
+
+        $recordType->save();
+
+        return Redirect::to($post['returnURL']);
 	}
 
 

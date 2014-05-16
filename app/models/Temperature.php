@@ -13,7 +13,6 @@ class Temperature extends Eloquent {
     protected $table = "temperature";
 
     protected $fillable = array(
-        'record_id',
         'temperature',
     );
 

@@ -1,13 +1,10 @@
 <?php
 
-class Logger extends Eloquent {
+class LoggerType extends Eloquent {
 
     protected $fillable = array(
         'name',
         'description',
-        'logger_type_id',
-        'ip_address',
-        'port'
     );
 
     public $rules = array(
@@ -30,14 +27,9 @@ class Logger extends Eloquent {
 
     }
 
-    public function records()
+    public function loggers()
     {
-        return $this->hasMany('Record')->orderBy('name');
-    }
-
-    public function loggerType()
-    {
-        return $this->belongsTo('LoggerType');
+        return $this->hasMany('Logger')->orderBy('name');
     }
 
 }

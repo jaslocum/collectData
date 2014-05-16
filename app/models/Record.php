@@ -5,11 +5,11 @@ class Record extends Eloquent {
     protected $fillable = array(
         'active',
         'name',
+        'description',
         'logger_id',
         'record_type_id',
         'command',
         'multiplier',
-        'description',
         'unit_id',
         'graph_y_lower',
         'graph_y_upper',
@@ -59,7 +59,7 @@ class Record extends Eloquent {
         return $this->belongsTo('Logger');
     }
 
-    public function record_type()
+    public function recordType()
     {
         return $this->belongsTo('RecordType');
     }

@@ -1,32 +1,36 @@
 @extends('layouts/collectData')
-@section('amps')
+@section('loggers')
 <div class='row clearfix'>
     <div class='col-sm-12'>
     {{ HTML::ul($errors->all()) }}
-    {{Form::open(array('route'=>array('amps.update',$amp->id), 'method'=>'PUT'))}}
+    {{Form::open(array('route'=>array('loggers.update',$logger->id), 'method'=>'PUT'))}}
         <div class="col-sm-12">
-            <h2><span class="glyphicon glyphicon-edit" style="margin: 5px"></span>Edit Amp</h2>
+            <h2><span class="glyphicon glyphicon-edit"></span>Edit Logger</h2>
         </div>
         <div class="col-sm-4">
             <div class='form-group'>
                 {{ Form::label('id', 'Id') }}
-                {{ Form::text('id', $amp->id, array('class'=>'form-control', 'readonly')) }}
+                {{ Form::text('id', $logger->id, array('class'=>'form-control', 'readonly'=>'readonly')) }}
             </div>
             <div class='form-group'>
-                {{Form::label('record_id', 'Record') }}
-                {{Form::select('record_id',$records,$amp->record_id,array('class'=>'form-control', 'readonly'))}}
+                {{ Form::label('name', 'Name') }}
+                {{ Form::text('name', $logger->name, array('class'=>'form-control')) }}
             </div>
             <div class='form-group'>
-                {{ Form::label('amp', 'Amp') }}
-                {{ Form::text('amp', $amp->amp, array('class'=>'form-control')) }}
+                {{ Form::label('description', 'Description') }}
+                {{ Form::text('description', $logger->description, array('class'=>'form-control')) }}
             </div>
             <div class='form-group'>
-                {{ Form::label('created_at', 'Created') }}
-                {{ Form::text('created_at', $amp->created_at, array('class'=>'form-control', 'readonly')) }}
+                {{Form::label('logger_type_id', 'Logger Type') }}
+                {{Form::select('logger_type_id',$loggerTypes,$logger->logger_type_id,array('class'=>'form-control'))}}
             </div>
             <div class='form-group'>
-                {{ Form::label('updated_at', 'Updated') }}
-                {{ Form::text('updated_at', $amp->updated_at, array('class'=>'form-control', 'readonly')) }}
+                {{ Form::label('ip_address', 'IP Address') }}
+                {{ Form::text('ip_address', $logger->ip_address, array('class'=>'form-control')) }}
+            </div>
+            <div class='form-group'>
+                {{ Form::label('port', 'Port') }}
+                {{ Form::text('port', $logger->port, array('class'=>'form-control')) }}
             </div>
             <div class = "col-sm-12">
                 <span class="col-sm-1"></span>

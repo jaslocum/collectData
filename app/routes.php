@@ -13,7 +13,7 @@
 
 Event::listen('illuminate.query', function($query)
 {
-    var_dump($query);
+    //var_dump($query);
 });
 
 Route::get('/', 'HomeController@showWelcome');
@@ -29,5 +29,7 @@ Route::resource('records', 'RecordController');
 Route::resource('recordTypes', 'RecordTypeController');
 
 Route::resource('loggers', 'LoggerController');
+
+Route::resource('loggerTypes', 'LoggerTypeController');
 
 Route::resource('units', 'UnitController');

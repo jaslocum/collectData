@@ -1,23 +1,23 @@
 <?php
 
-class LoggerController extends \BaseController {
+class LoggerTypeController extends \BaseController {
 
-    public function __construct (Logger $logger)
+    public function __construct (LoggerType $loggerType)
     {
-        $this->logger = $logger;
+        $this->loggerType = $loggerType;
     }
+
 
     /**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
-
 	public function index()
 	{
-		// list loggers
-        $loggers = $this->logger->orderBy('name')->with('loggerType')->get();
-        return View::make('loggers.index',array('loggers'=>$loggers));
+		//list loggerTypes
+        $loggerTypes = $this->loggerType->orderBy('name')->get();
+        return View::make('loggerTypes.index',array('loggerTypes'=>$loggerTypes));
 	}
 
 
@@ -63,9 +63,8 @@ class LoggerController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-        $logger = $this->logger->whereId($id)->first();
-        $loggerTypes = LoggerType::orderBy('name')->get()->lists('name','id');
-        return View::make('loggers.edit', array('logger'=>$logger, 'loggerTypes'=>$loggerTypes));
+        $loggerType = $this->loggerType->whereId($id)->first();
+        return View::make('loggerTypes.edit', array('loggerType'=>$loggerType));
 	}
 
 
@@ -76,16 +75,16 @@ class LoggerController extends \BaseController {
 	 * @return Response
 	 */
 	public function update($id)
-	{
+	{        
         $post = Request::all();
-        $logger = $this->logger->whereId($id)->first();
+        $loggerType = $this->loggerType->whereId($id)->first();
 
-        if (! $logger->fill(Input::all())->isValid())
+        if (! $loggerType->fill(Input::all())->isValid())
         {
-            return Redirect::back()->withInput()->withErrors($logger->errors);
+            return Redirect::back()->withInput()->withErrors($loggerType->errors);
         }
 
-        $logger->save();
+        $loggerType->save();
 
         return Redirect::to($post['returnURL']);
 	}

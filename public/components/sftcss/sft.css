@@ -1,0 +1,15 @@
+/*!
+ * SFT v0.0.1 (http://github.com/jslocum)
+ * Copyright 2011-2014 Surface Finish Technologies, Inc.
+*/
+
+input[type=checkbox]
+{
+    /* Double-sized Checkboxes */
+    -ms-transform: scale(1.5); /* IE */
+    -moz-transform: scale(1.5); /* FF */
+    -webkit-transform: scale(1.5); /* Safari and Chrome */
+    -o-transform: scale(1.5); /* Opera */
+    margin: 0em 1em 0px 1em;
+    !important;
+}

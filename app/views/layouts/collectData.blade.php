@@ -10,6 +10,7 @@
     {{HTML::style('components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css')}}
     {{HTML::style('components/bootstrap/dist/css/bootstrap.css')}}
     {{HTML::style('components/bootstrap/dist/css/bootstrap-theme.css')}}
+    {{HTML::style('components/sftcss/sft.css')}}
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     {{HTML::script('components/jquery/dist/jquery.js',array('type'=>'text/javascript'))}}
@@ -35,6 +36,7 @@
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="{{route('records.index')}}#records">Record</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="{{route('recordTypes.index')}}#recordTypes">Record Type</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="{{route('loggers.index')}}#loggers">Logger</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="{{route('loggerTypes.index')}}#loggerTypes">Logger Type</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="{{route('units.index')}}#units">Unit</a></li>
             </ul>
         </li>
@@ -60,6 +62,9 @@
         </div>
         <div class="tab-pane {{ Form::activeNavTab('loggers') }}" id="loggers">
             @yield('loggers')
+        </div>
+        <div class="tab-pane {{ Form::activeNavTab('loggerTypes') }}" id="loggerTypes">
+            @yield('loggerTypes')
         </div>
         <div class="tab-pane {{ Form::activeNavTab('units') }}" id="units">
             @yield('units')
