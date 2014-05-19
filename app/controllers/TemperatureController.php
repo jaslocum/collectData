@@ -27,7 +27,9 @@ class TemperatureController extends BaseController {
             take(60)->
             with('record')->
             get();
-
+        foreach ($temperatures as $temperature){
+            $temperature->editRoutes = "window.location='".route('temperatures.edit',$temperature->id)."'";
+        }
 		return View::make('temperatures.index', array('temperatures'=>$temperatures, 'd1'=>$d1, 'records'=>$records, 'r1'=>$r1));
 	}
 

@@ -10,3 +10,13 @@ function cbSet($tag){
   $($tag).prop('checked') ? $($tag).val("1") : $($tag).val("0");
 
 }
+
+function deleteURI(url,returnURL){
+  $.ajax({
+      url: url + '?' + $.param({"returnURL" : returnURL}),
+      type: 'DELETE',
+      success: function(){
+        window.location = returnURL;
+      }
+  });
+}

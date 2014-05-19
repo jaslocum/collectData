@@ -47,7 +47,12 @@
                 @foreach ($amps as $amp)
                     <tr>
                         <td>
-                            {{link_to("/amps/$amp->id/edit",$amp->id)}}
+                            <button type="button"
+                                    onclick="{{$amp->editRoutes}}"
+                                    class="btn btn-primary"
+                                >
+                                <span class="glyphicon glyphicon-edit"></span> {{$amp->id}}
+                            </button>
                         </td>
                         <td>
                             {{$amp->record->name}}

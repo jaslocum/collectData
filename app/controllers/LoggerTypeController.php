@@ -16,8 +16,17 @@ class LoggerTypeController extends \BaseController {
 	public function index()
 	{
 		//list loggerTypes
-        $loggerTypes = $this->loggerType->orderBy('name')->get();
-        return View::make('loggerTypes.index',array('loggerTypes'=>$loggerTypes));
+        $loggerTypes = $this->loggerType->orderBy('name')->where('id','<>','0')->get();
+        foreach ($loggerTypes as $loggerType){
+            $loggerType->editRoutes = "window.location='".route('loggerTypes.edit',$loggerType->id)."'";
+        }
+        $createRoute = "window.location='".route('loggerTypes.create')."'";
+        return View::make('loggerTypes.index',
+            array(
+                'loggerTypes'=>$loggerTypes,
+                'createRoute' => $createRoute
+            )
+        );
 	}
 
 
@@ -28,7 +37,20 @@ class LoggerTypeController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+        $loggerType = new LoggerType;
+        $loggerType->save();
+        $id=$loggerType->id;
+        $loggerType = $this->loggerType->whereId($id)->first();
+        $returnURL = route('loggerTypes.index');
+        $deleteURI = route('loggerTypes.destroy',$loggerType->id);
+
+        return View::make('loggerTypes.edit',
+            array(
+                'loggerType'=>$loggerType,
+                'returnURL'=>$returnURL,
+                'deleteURI'=>$deleteURI
+            )
+        );
 	}
 
 
@@ -64,7 +86,15 @@ class LoggerTypeController extends \BaseController {
 	public function edit($id)
 	{
         $loggerType = $this->loggerType->whereId($id)->first();
-        return View::make('loggerTypes.edit', array('loggerType'=>$loggerType));
+        $returnURL = route('loggerTypes.index');
+        $deleteURI = route('loggerTypes.destroy',$loggerType->id);
+        return View::make('loggerTypes.edit',
+            array(
+                'loggerType'=>$loggerType,
+                'returnURL'=>$returnURL,
+                'deleteURI'=>$deleteURI
+            )
+        );
 	}
 
 
@@ -98,7 +128,8 @@ class LoggerTypeController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+        $loggerType = LoggerType::find($id);
+        $loggerType->delete();
 	}
 
 

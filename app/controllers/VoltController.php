@@ -27,7 +27,9 @@ class VoltController extends BaseController {
                 take(60)->
                 with('record')->
                 get();
-
+        foreach ($volts as $volt){
+            $volt->editRoutes = "window.location='".route('volts.edit',$volt->id)."'";
+        }
         return View::make('volts.index', array('volts'=>$volts, 'd1'=>$d1, 'records'=>$records, 'r1'=>$r1));
 	}
 

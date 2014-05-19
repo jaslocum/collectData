@@ -46,7 +46,12 @@
                 @foreach ($temperatures as $temperature)
                     <tr>
                         <td>
-                            {{link_to("/temperatures/$temperature->id/edit",$temperature->id)}}
+                            <button type="button"
+                                    onclick="{{$temperature->editRoutes}}"
+                                    class="btn btn-primary"
+                                >
+                                <span class="glyphicon glyphicon-edit"></span> {{$temperature->id}}
+                            </button>
                         </td>
                         <td>
                             {{$temperature->record->name}}

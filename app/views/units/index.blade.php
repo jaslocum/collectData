@@ -22,7 +22,12 @@
             @foreach ($units as $unit)
                 <tr>
                     <td>
-                        {{link_to("/units/$unit->id/edit",$unit->id)}}
+                        <button type="button"
+                                onclick="{{$unit->editRoutes}}"
+                                class="btn btn-primary"
+                            >
+                            <span class="glyphicon glyphicon-edit"></span> {{$unit->id}}
+                        </button>
                     </td>
                     <td>
                         {{$unit->name}}

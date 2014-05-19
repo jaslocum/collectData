@@ -22,7 +22,12 @@
             @foreach ($recordTypes as $recordType)
                 <tr>
                     <td>
-                        {{link_to("/recordTypes/$recordType->id/edit",$recordType->id)}}
+                        <button type="button"
+                                onclick="{{$recordType->editRoutes}}"
+                                class="btn btn-primary"
+                            >
+                            <span class="glyphicon glyphicon-edit"></span> {{$recordType->id}}
+                        </button>
                     </td>
                     <td>
                         {{$recordType->name}}

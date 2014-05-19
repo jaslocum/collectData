@@ -3,9 +3,17 @@
 <h4>
     <div class="container-fluid">
         <div class="row col-md-12">
-            <div class="col-md-2">
+            <div class="row col-md-2">
                 <span class="glyphicon glyphicon-th-list"></span>
                 {{Form::label('LoggerTypes')}}
+            </div>
+            <div class="col-md-1">
+                <button type="button"
+                        onclick="{{$createRoute}}"
+                        class="btn btn-success"
+                    >
+                    <span class="glyphicon glyphicon-plus-sign"></span> Add
+                </button>
             </div>
         </div>
     </div>
@@ -22,7 +30,12 @@
             @foreach ($loggerTypes as $loggerType)
                 <tr>
                     <td>
-                        {{link_to("/loggerTypes/$loggerType->id/edit",$loggerType->id)}}
+                        <button type="button"
+                                onclick="{{$loggerType->editRoutes}}"
+                                class="btn btn-primary"
+                            >
+                            <span class="glyphicon glyphicon-edit"></span> {{$loggerType->id}}
+                        </button>
                     </td>
                     <td>
                         {{$loggerType->name}}

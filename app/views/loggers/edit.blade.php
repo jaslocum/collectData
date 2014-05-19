@@ -4,6 +4,7 @@
     <div class='col-sm-12'>
     {{ HTML::ul($errors->all()) }}
     {{Form::open(array('route'=>array('loggers.update',$logger->id), 'method'=>'PUT'))}}
+        <input name="returnURL" type="text" class="hidden" value="{{$returnURL}}">
         <div class="col-sm-12">
             <h2><span class="glyphicon glyphicon-edit"></span>Edit Logger</h2>
         </div>
@@ -32,12 +33,12 @@
                 {{ Form::label('port', 'Port') }}
                 {{ Form::text('port', $logger->port, array('class'=>'form-control')) }}
             </div>
-            <div class = "col-sm-12">
-                <span class="col-sm-1"></span>
-                <input name="returnURL" type="text" class="hidden" value="{{URL::previous()}}">
-                <input type="button" value="Cancel"  onclick="window.location='{{URL::previous()}}'" class="col-sm-4 btn btn-default">
-                <span class="col-sm-1"></span>
-                {{ Form::submit('Submit', array('class'=>'col-sm-4 btn btn-primary')) }}
+            <div class = "col-md-12">
+                {{ Form::submit('Submit', array('class'=>'col-md-3 btn btn-primary')) }}
+                <div class="col-md-1"></div>
+                <input type="button" value="Cancel"  onclick="window.location='{{$returnURL}}'" class="col-md-3 btn btn-default">
+                <div class="col-md-1"></div>
+                <input type="button" value="Delete"  onclick="deleteURI('{{$deleteURI}}','{{$returnURL}}')" class="col-md-3 btn btn-danger">
             </div>
         </div>
     {{ Form::close() }}

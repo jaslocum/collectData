@@ -2,11 +2,17 @@
 @section('loggers')
 <h4>
     <div class="container-fluid">
-        <div class="row col-md-12">
-            <div class="col-md-2">
-                <span class="glyphicon glyphicon-th-list"></span>
-                {{Form::label('Loggers')}}
-            </div>
+        <div class="row col-md-2">
+             <span class="glyphicon glyphicon-th-list"></span>
+            {{Form::label('Loggers')}}
+        </div>
+        <div class="col-md-1">
+            <button type="button"
+                   onclick="{{$createRoute}}"
+                   class="btn btn-success"
+            >
+                <span class="glyphicon glyphicon-plus-sign"></span> Add
+            </button>
         </div>
     </div>
 </h4>
@@ -25,7 +31,12 @@
             @foreach ($loggers as $logger)
                 <tr>
                     <td>
-                        {{link_to("/loggers/$logger->id/edit",$logger->id)}}
+                        <button type="button"
+                                onclick="{{$logger->editRoutes}}"
+                                class="btn btn-primary"
+                            >
+                            <span class="glyphicon glyphicon-edit"></span> {{$logger->id}}
+                        </button>
                     </td>
                     <td>
                         {{$logger->name}}

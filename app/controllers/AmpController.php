@@ -27,7 +27,9 @@ class AmpController extends BaseController {
                 take(60)->
                 with('record')->
                 get();
-
+        foreach ($amps as $amp){
+            $amp->editRoutes = "window.location='".route('amps.edit',$amp->id)."'";
+        }
         return View::make('amps.index', array('amps'=>$amps, 'd1'=>$d1, 'records'=>$records, 'r1'=>$r1));
 	}
 

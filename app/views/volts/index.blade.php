@@ -46,7 +46,12 @@
                 @foreach ($volts as $volt)
                     <tr>
                         <td>
-                            {{link_to("/volts/$volt->id/edit",$volt->id)}}
+                            <button type="button"
+                                    onclick="{{$volt->editRoutes}}"
+                                    class="btn btn-primary"
+                            >
+                                <span class="glyphicon glyphicon-edit"></span> {{$volt->id}}
+                            </button>
                         </td>
                         <td>
                             {{$volt->record->name}}

@@ -16,7 +16,10 @@ class UnitController extends \BaseController {
 	public function index()
 	{
 		//list units
-        $units = $this->unit->orderBy('name')->get();
+        $units = $this->unit->orderBy('name')->where('id','<>','0')->get();
+        foreach ($units as $unit){
+            $unit->editRoutes = "window.location='".route('units.edit',$unit->id)."'";
+        }
         return View::make('units.index',array('units'=>$units));
 	}
 

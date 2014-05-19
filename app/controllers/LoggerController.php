@@ -16,8 +16,17 @@ class LoggerController extends \BaseController {
 	public function index()
 	{
 		// list loggers
-        $loggers = $this->logger->orderBy('name')->with('loggerType')->get();
-        return View::make('loggers.index',array('loggers'=>$loggers));
+        $loggers = $this->logger->orderBy('name')->where('id','<>','0')->with('loggerType')->get();
+        foreach ($loggers as $logger){
+            $logger->editRoutes = "window.location='".route('loggers.edit',$logger->id)."'";
+        }
+        $createRoute = "window.location='".route('loggers.create')."'";
+        return View::make('loggers.index',
+            array(
+                'loggers' => $loggers,
+                'createRoute' => $createRoute
+            )
+        );
 	}
 
 
@@ -28,7 +37,22 @@ class LoggerController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+        $logger = new Logger;
+        $logger->save();
+        $id=$logger->id;
+        $logger = $this->logger->whereId($id)->first();
+        $loggerTypes = LoggerType::orderBy('name')->get()->lists('name','id');
+        $returnURL = route('loggers.index');
+        $deleteURI = route('loggers.destroy',$logger->id);
+
+        return View::make('loggers.edit',
+            array(
+                'logger'=>$logger,
+                'loggerTypes'=>$loggerTypes,
+                'returnURL'=>$returnURL,
+                'deleteURI'=>$deleteURI
+            )
+        );
 	}
 
 
@@ -65,7 +89,17 @@ class LoggerController extends \BaseController {
 	{
         $logger = $this->logger->whereId($id)->first();
         $loggerTypes = LoggerType::orderBy('name')->get()->lists('name','id');
-        return View::make('loggers.edit', array('logger'=>$logger, 'loggerTypes'=>$loggerTypes));
+        $returnURL = route('loggers.index');
+        $deleteURI = route('loggers.destroy',$logger->id);
+
+        return View::make('loggers.edit',
+            array(
+                'logger'=>$logger,
+                'loggerTypes'=>$loggerTypes,
+                'returnURL'=>$returnURL,
+                'deleteURI'=>$deleteURI
+            )
+        );
 	}
 
 
@@ -99,7 +133,8 @@ class LoggerController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$logger = Logger::find($id);
+        $logger->delete();
 	}
 
 

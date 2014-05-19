@@ -17,7 +17,16 @@ class RecordController extends \BaseController {
 	{
         //list records
         $records = $this->record->orderBy('name')->with('logger')->with('recordType')->with('unit')->get();
-        return View::make('records.index',array('records'=>$records));
+        foreach ($records as $record){
+            $record->editRoutes = "window.location='".route('records.edit',$record->id)."'";
+        }
+        $createRoute = "window.location='".route('records.create')."'";
+        return View::make('records.index',
+            array(
+                'records' => $records,
+                'createRoute' => $createRoute
+            )
+        );
 	}
 
 
@@ -26,10 +35,27 @@ class RecordController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function create()
-	{
-		//
-	}
+    public function create()
+    {
+        $record = new Record;
+        $record->save();
+        $id = $record->id;
+        $record = $this->record->with('logger')->with('recordType')->with('unit')->whereId($id)->first();
+        $recordTypes = RecordType::orderBy('name')->get()->lists('name','id');
+        $loggers =Logger::orderBy('name')->get()->lists('name','id');
+        $units = Unit::orderBy('name')->get()->lists('name','id');
+        $returnURL = route('records.index');
+        $deleteURI = route('records.destroy',$record->id);
+        return View::make('records.edit',
+            array('record'=>$record,
+                'recordTypes'=>$recordTypes,
+                'loggers'=>$loggers,
+                'units'=>$units,
+                'returnURL'=>$returnURL,
+                'deleteURI'=>$deleteURI
+            )
+        );
+    }
 
 
 	/**
@@ -63,16 +89,22 @@ class RecordController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-        $record = $this->record->orderBy('name')->with('logger')->with('recordType')->with('unit')->whereId($id)->first();
+        $record = $this->record->with('logger')->with('recordType')->with('unit')->whereId($id)->first();
         $recordTypes = RecordType::orderBy('name')->get()->lists('name','id');
-        $loggers = Logger::orderBy('name')->get()->lists('name','id');
+        $loggers =Logger::orderBy('name')->get()->lists('name','id');
         $units = Unit::orderBy('name')->get()->lists('name','id');
+        $returnURL = route('records.index');
+        $deleteURI = route('records.destroy',$record->id);
         return View::make('records.edit',
-            array('record'=>$record,
+            array(
+                  'record'=>$record,
                   'recordTypes'=>$recordTypes,
                   'loggers'=>$loggers,
-                  'units'=>$units
-            ));
+                  'units'=>$units,
+                  'returnURL'=>$returnURL,
+                  'deleteURI'=>$deleteURI
+            )
+        );
 	}
 
 
@@ -106,7 +138,8 @@ class RecordController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+        $record = Record::find($id);
+        $record->delete();
 	}
 
 

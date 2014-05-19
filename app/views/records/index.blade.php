@@ -3,9 +3,17 @@
 <h4>
     <div class="container-fluid">
         <div class="row col-md-12">
-            <div class="col-md-2">
+            <div class="row col-md-2">
                 <span class="glyphicon glyphicon-th-list"></span>
                 {{Form::label('Records')}}
+            </div>
+            <div class="col-md-1">
+                <button type="button"
+                        onclick="{{$createRoute}}"
+                        class="btn btn-success"
+                >
+                    <span class="glyphicon glyphicon-plus-sign"></span> Add
+                </button>
             </div>
         </div>
     </div>
@@ -31,7 +39,12 @@
             @foreach ($records as $record)
                 <tr>
                     <td>
-                        {{link_to("/records/$record->id/edit",$record->id)}}
+                        <button type="button"
+                            onclick="{{$record->editRoutes}}"
+                            class="btn btn-primary"
+                        >
+                            <span class="glyphicon glyphicon-edit"></span> {{$record->id}}
+                        </button>
                     </td>
                     <td>
                         {{Form::checkbox('active',$record->active,$record->active,array('readonly'=>'readonly', 'disabled'=>'disabled'))}}

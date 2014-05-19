@@ -16,7 +16,10 @@ class RecordTypeController extends \BaseController {
     public function index()
 	{
 		//list recordTypes
-        $recordTypes = $this->recordType->orderBy('name')->get();
+        $recordTypes = $this->recordType->orderBy('name')->where('id','<>','0')->get();
+        foreach ($recordTypes as $recordType){
+            $recordType->editRoutes = "window.location='".route('recordTypes.edit',$recordType->id)."'";
+        }
         return View::make('recordTypes.index',array('recordTypes'=>$recordTypes));
 	}
 
